@@ -1,16 +1,22 @@
-all: main
+TARGET = bin/dbview
+SRC = $(wildcard src/*.c)
+OBJ = $(patsubst src/%.c, obj/%.o, $(SRC))
 
-CC = clang
-override CFLAGS += -g -Wno-everything -pthread -lm
+run: clean default
+	./$(TARGET) -f ./mynewdb.db -n 
+	./$(TARGET) -f ./mynewdb.db -a "Timmy H.,123 Sheshire Ln.,120"
 
-SRCS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.c' -print)
-HEADERS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.h' -print)
-
-main: $(SRCS) $(HEADERS)
-	$(CC) $(CFLAGS) $(SRCS) -o "$@"
-
-main-debug: $(SRCS) $(HEADERS)
-	$(CC) $(CFLAGS) -O0 $(SRCS) -o "$@"
+default: $(TARGET)
 
 clean:
-	rm -f main main-debug
+	rm -f obj/*.o
+	rm -f bin/*
+	rm -f *.db
+
+$(TARGET): $(OBJ)
+	gcc -o $@ $?
+
+obj/%.o : src/%.c
+	gcc -c $< -o $@ -Iinclude
+
+
