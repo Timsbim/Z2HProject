@@ -255,4 +255,3 @@ list_employees( dbheader_t* header, employee_t* employees )
         printf(fmt, i + 1, employee->name, employee->address, employee->hours);
     }
 }
-
