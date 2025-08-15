@@ -29,7 +29,7 @@ typedef enum {
 int  create_db_header      ( dbheader_t** );
 void convert_header_to     ( dbheader_t*, convto_t );
 int  validate_db_header    ( int, dbheader_t** );
-int  file_write            ( int, dbheader_t*, employee_t* );
+int  output_file           ( int, dbheader_t*, employee_t* );
 int  read_employees        ( int, dbheader_t*, employee_t** );
 int  parse_addstring       ( char*, employee_t* );
 int  parse_updatestring    ( char*, char*, unsigned int* );
