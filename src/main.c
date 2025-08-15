@@ -80,7 +80,7 @@ main( int argc, char* argv[] )
             puts( "Failed to create database header!" );
             exit(EXIT_FAILURE);
         }
-        if ( file_write( dbfd, dbhdr, employees ) == STATUS_FAILURE ) {
+        if ( output_file( dbfd, dbhdr, employees ) == STATUS_FAILURE ) {
             puts( "Failed to write new database file!" );
             exit(EXIT_FAILURE);
         }
@@ -132,7 +132,7 @@ main( int argc, char* argv[] )
             exit(EXIT_FAILURE);
         if (
             (dbfd = create_db_file( filepath, false )) == STATUS_FAILURE
-            || file_write( dbfd, dbhdr, employees ) == STATUS_FAILURE
+            || output_file( dbfd, dbhdr, employees ) == STATUS_FAILURE
         ) {
             unbackup_db( filepath );
             puts( "Failed to remove employee(s) from database!" );

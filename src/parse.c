@@ -83,7 +83,7 @@ validate_db_header( int fd, dbheader_t** header_out )
 }
 
 int
-file_write( int fd, dbheader_t* header, employee_t* employees )
+output_file( int fd, dbheader_t* header, employee_t* employees )
 {
     lseek( fd, 0, SEEK_SET );
     
